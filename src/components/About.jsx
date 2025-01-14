@@ -61,15 +61,7 @@ const About = () => {
               animate={isInView ? "visible" : "hidden"}
             >
               <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark mb-4">
-                Hello! My name is [Your Name] and I enjoy creating things that live on the internet.
-                My interest in web development started back in [year] when I decided to try editing
-                custom Tumblr themes — turns out hacking together a custom reblog button taught me
-                a lot about HTML & CSS!
-              </motion.p>
-              <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark mb-4">
-                Fast-forward to today, and I've had the privilege of working at [companies/projects].
-                My main focus these days is building accessible, inclusive products and digital
-                experiences.
+              Hi there! I’m Mohamed, a passionate software engineer with a knack for developing robust backend systems and engaging frontend experiences. I specialize in crafting efficient, scalable solutions using modern technologies like React, Django, and Docker. When I’m not coding, I enjoy exploring new tech trends and contributing to open-source projects.
               </motion.p>
               <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark">
                 Here are a few technologies I've been working with recently:

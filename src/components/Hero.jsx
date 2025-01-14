@@ -74,7 +74,7 @@ const Hero = () => {
             data-scroll-direction="horizontal"
             data-scroll-speed="-2"
           >
-            ARABISCO
+            Mohamed
           </span>
         </motion.h1>
         <motion.h2
