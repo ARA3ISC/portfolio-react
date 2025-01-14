@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import { useRef } from 'react';
-import  inceptionImg  from '/src/assets/inception.avif';
-import  webservImg  from '/src/assets/webserv.png';
-import  ft_transcendenceImg  from '/src/assets/ft_trens.jpg';
+import inceptionImg from '/src/assets/inception.avif';
+import webservImg from '/src/assets/webserv.png';
+import ft_transcendenceImg from '/src/assets/ft_trens.jpg';
 
 const Projects = () => {
   const projects = [
@@ -15,11 +15,11 @@ const Projects = () => {
       image: inceptionImg
     },
     {
-        title: 'Webserv',
-        description: 'A custom web server built from scratch, handling HTTP requests and responses, inspired by Nginx. It supports multiple clients and dynamic configurations.',
-        tags: ['C++', 'HTTP', 'Sockets', 'Web Server', 'Nginx'],
-        github: 'https://github.com/ara3isc/webserv',
-        image: webservImg
+      title: 'Webserv',
+      description: 'A custom web server built from scratch, handling HTTP requests and responses, inspired by Nginx. It supports multiple clients and dynamic configurations.',
+      tags: ['C++', 'HTTP', 'Sockets', 'Web Server', 'Nginx'],
+      github: 'https://github.com/ara3isc/webserv',
+      image: webservImg
     },
     {
       title: 'ft_transcendence',
