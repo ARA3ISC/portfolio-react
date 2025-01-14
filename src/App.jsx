@@ -249,7 +249,9 @@ function AppContent() {
           transition={{ duration: 0.8 }}
           className="min-h-screen w-full overflow-hidden bg-primary dark:bg-primary-dark text-textPrimary dark:text-textPrimary-dark"
         >
-          <CustomCursor />
+          <div className='hidden md:block'>
+            <CustomCursor />
+          </div>
           <div className="max-w-[1920px] mx-auto relative">
             <Navbar />
             <main
