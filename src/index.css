@@ -140,26 +140,53 @@ html.has-scroll-dragging {
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Light mode */
+    --primary-rgb: 245, 248, 255;
+    --secondary-rgb: 14, 165, 233;
+    --tertiary-rgb: 226, 232, 240;
+    --text-primary-rgb: 30, 41, 59;
+    --text-secondary-rgb: 100, 116, 139;
+
+    /* Dark mode */
+    --primary-dark-rgb: 10, 25, 47;
+    --secondary-dark-rgb: 100, 255, 218;
+    --tertiary-dark-rgb: 17, 34, 64;
+    --text-primary-dark-rgb: 204, 214, 246;
+    --text-secondary-dark-rgb: 136, 146, 176;
+  }
+
   html {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-primary text-textPrimary;
+    @apply bg-primary dark:bg-primary-dark text-textPrimary dark:text-textPrimary-dark;
   }
 }
 
 @layer components {
   .section-title {
-    @apply text-3xl font-bold mb-8 relative inline-block;
+    @apply text-4xl md:text-5xl font-bold text-textPrimary dark:text-textPrimary-dark mb-8;
   }
   
   .nav-link {
-    @apply hover:text-secondary transition-colors duration-300;
+    @apply text-textSecondary dark:text-textSecondary-dark hover:text-secondary dark:hover:text-secondary-dark transition-colors duration-300;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 border border-secondary dark:border-secondary-dark text-secondary dark:text-secondary-dark rounded hover:bg-secondary/10 dark:hover:bg-secondary-dark/10 transition-all duration-300;
   }
   
-  .btn-primary {
-    @apply px-6 py-3 border border-secondary text-secondary rounded hover:bg-secondary/10 transition-all duration-300;
+  .perspective-1000 {
+    perspective: 1000px;
   }
+}
+
+/* Smooth theme transition */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }

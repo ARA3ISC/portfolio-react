@@ -39,7 +39,7 @@ const Hero = () => {
     <section
       id="home"
       ref={containerRef}
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-primary dark:bg-primary-dark relative overflow-hidden"
       data-scroll-section
       onMouseMove={handleMouseMove}
     >
@@ -53,7 +53,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-secondary mb-4"
+          className="text-secondary dark:text-secondary-dark text-lg md:text-xl font-mono mb-4 block"
           data-scroll
           data-scroll-speed="2"
         >
@@ -61,7 +61,7 @@ const Hero = () => {
         </motion.p>
         <motion.h1
           ref={textRef}
-          className="text-4xl sm:text-6xl font-bold mb-4 relative hover-trigger"
+          className="text-4xl sm:text-6xl font-bold mb-4 relative hover-trigger text-textPrimary dark:text-textPrimary-dark"
           style={{
             textShadow: xy.to((x, y) => `${x / 5}px ${y / 5}px 10px rgba(100, 255, 218, 0.3)`)
           }}
@@ -69,7 +69,7 @@ const Hero = () => {
           data-scroll-speed="2"
         >
           <span 
-            className="text-textPrimary"
+            className="text-textPrimary dark:text-textPrimary-dark"
             data-scroll
             data-scroll-direction="horizontal"
             data-scroll-speed="-2"
@@ -81,7 +81,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="text-3xl sm:text-5xl font-bold text-textSecondary mb-6"
+          className="text-3xl sm:text-5xl font-bold text-textSecondary dark:text-textSecondary-dark mb-6"
           data-scroll
           data-scroll-speed="3"
         >
@@ -91,7 +91,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="max-w-2xl mx-auto text-textSecondary mb-8"
+          className="max-w-2xl mx-auto text-textSecondary dark:text-textSecondary-dark mb-8"
           data-scroll
           data-scroll-speed="4"
         >
@@ -119,7 +119,7 @@ const Hero = () => {
       </motion.div>
 
       <div 
-        className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent to-primary opacity-50"
+        className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent to-primary dark:to-primary-dark opacity-50"
         data-scroll
         data-scroll-speed="-8"
       ></div>
@@ -129,7 +129,7 @@ const Hero = () => {
         {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-secondary/20 rounded-full"
+            className="absolute w-2 h-2 bg-secondary/20 dark:bg-secondary-dark/20 rounded-full"
             initial={{
               x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion'
 import LocomotiveScroll from 'locomotive-scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
+import { useTheme } from './context/ThemeContext';
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -20,7 +21,7 @@ const generateParticles = (count) => {
   }));
 };
 
-function App() {
+function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [glitchText, setGlitchText] = useState('WELCOME');
   const scrollRef = useRef(null);
@@ -28,6 +29,7 @@ function App() {
   const particles = generateParticles(50);
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     const glitchInterval = setInterval(() => {
@@ -89,7 +91,7 @@ function App() {
       {isLoading ? (
         <motion.div
           key="loader"
-          className="fixed inset-0 bg-primary overflow-hidden perspective-1000 z-50"
+          className="fixed inset-0 bg-primary dark:bg-primary-dark overflow-hidden perspective-1000 z-50"
           exit={{ 
             opacity: 0,
             scale: 1.5,
@@ -117,13 +119,15 @@ function App() {
             {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-32 h-32 border-2 border-secondary/30 backdrop-blur-sm"
+                className="absolute w-32 h-32 border-2 border-secondary/30 dark:border-secondary-dark/30 backdrop-blur-sm"
                 style={{ 
                   transform: `rotateY(${i * 60}deg) translateZ(80px)`,
-                  backgroundColor: 'rgba(var(--secondary-rgb), 0.1)'
+                  backgroundColor: isDarkMode ? 'rgba(var(--secondary-dark-rgb), 0.1)' : 'rgba(var(--secondary-rgb), 0.1)'
                 }}
                 animate={{
-                  borderColor: ['rgba(var(--secondary-rgb), 0.3)', 'rgba(var(--secondary-rgb), 0.8)', 'rgba(var(--secondary-rgb), 0.3)'],
+                  borderColor: isDarkMode 
+                    ? ['rgba(var(--secondary-dark-rgb), 0.3)', 'rgba(var(--secondary-dark-rgb), 0.8)', 'rgba(var(--secondary-dark-rgb), 0.3)']
+                    : ['rgba(var(--secondary-rgb), 0.3)', 'rgba(var(--secondary-rgb), 0.8)', 'rgba(var(--secondary-rgb), 0.3)']
                 }}
                 transition={{
                   duration: 2,
@@ -138,27 +142,25 @@ function App() {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative">
               <motion.div
-                className="text-6xl font-bold text-secondary relative"
-                style={{ textShadow: '2px 2px 20px rgba(var(--secondary-rgb), 0.5)' }}
+                className="text-6xl font-bold text-secondary dark:text-secondary-dark relative"
+                style={{ textShadow: isDarkMode ? '2px 2px 20px rgba(var(--secondary-dark-rgb), 0.5)' : '2px 2px 20px rgba(var(--secondary-rgb), 0.5)' }}
                 animate={{
-                  textShadow: [
-                    '2px 2px 20px rgba(var(--secondary-rgb), 0.5)',
-                    '2px 2px 40px rgba(var(--secondary-rgb), 0.8)',
-                    '2px 2px 20px rgba(var(--secondary-rgb), 0.5)'
-                  ]
+                  textShadow: isDarkMode 
+                    ? ['2px 2px 20px rgba(var(--secondary-dark-rgb), 0.5)', '2px 2px 40px rgba(var(--secondary-dark-rgb), 0.8)', '2px 2px 20px rgba(var(--secondary-dark-rgb), 0.5)']
+                    : ['2px 2px 20px rgba(var(--secondary-rgb), 0.5)', '2px 2px 40px rgba(var(--secondary-rgb), 0.8)', '2px 2px 20px rgba(var(--secondary-rgb), 0.5)']
                 }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
                 {glitchText}
                 <motion.div
-                  className="absolute inset-0 text-primary mix-blend-difference"
+                  className="absolute inset-0 text-primary dark:text-primary-dark mix-blend-difference"
                   animate={{ x: [-2, 2, -2] }}
                   transition={{ duration: 0.2, repeat: Infinity }}
                 >
                   {glitchText}
                 </motion.div>
                 <motion.div
-                  className="absolute inset-0 text-secondary/80 mix-blend-difference"
+                  className="absolute inset-0 text-secondary/80 dark:text-secondary-dark/80 mix-blend-difference"
                   animate={{ x: [2, -2, 2] }}
                   transition={{ duration: 0.2, repeat: Infinity, delay: 0.1 }}
                 >
@@ -172,7 +174,7 @@ function App() {
           {particles.map((particle) => (
             <motion.div
               key={particle.id}
-              className="absolute rounded-full bg-secondary/50"
+              className="absolute rounded-full bg-secondary/50 dark:bg-secondary-dark/50"
               style={{
                 width: particle.size,
                 height: particle.size,
@@ -210,7 +212,7 @@ function App() {
                   stroke="currentColor"
                   strokeWidth="4"
                   fill="none"
-                  className="text-secondary/30"
+                  className="text-secondary/30 dark:text-secondary-dark/30"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 2, ease: "easeInOut" }}
@@ -218,7 +220,7 @@ function App() {
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div 
-                  className="text-secondary font-mono text-sm flex items-center"
+                  className="text-secondary dark:text-secondary-dark font-mono text-sm flex items-center"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
@@ -229,7 +231,7 @@ function App() {
               </div>
             </div>
             <motion.div
-              className="text-secondary/50 text-sm font-mono tracking-wider"
+              className="text-secondary/50 dark:text-secondary-dark/50 text-sm font-mono tracking-wider"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
@@ -244,57 +246,30 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="min-h-screen w-full overflow-hidden"
+          className="min-h-screen w-full overflow-hidden bg-primary dark:bg-primary-dark text-textPrimary dark:text-textPrimary-dark"
         >
           <CustomCursor />
           <div className="max-w-[1920px] mx-auto relative">
             <Navbar />
             <main 
-              className="relative bg-primary text-textPrimary"
+              className="relative"
               data-scroll-container 
               ref={scrollRef}
             >
-              <div data-scroll-section>
-                <Hero />
-              </div>
-              <div data-scroll-section>
-                <About />
-              </div>
-              <div data-scroll-section>
-                <Projects />
-              </div>
-              <div data-scroll-section>
-                <Contact />
-              </div>
+              <Hero />
+              <About />
+              <Projects />
+              <Contact />
             </main>
-          </div>
-
-          {/* Floating particles */}
-          <div className="fixed inset-0 pointer-events-none">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-secondary/20"
-                initial={{
-                  x: Math.random() * window.innerWidth,
-                  y: Math.random() * window.innerHeight,
-                }}
-                animate={{
-                  x: Math.random() * window.innerWidth,
-                  y: Math.random() * window.innerHeight,
-                }}
-                transition={{
-                  duration: Math.random() * 20 + 10,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-            ))}
           </div>
         </motion.div>
       )}
     </AnimatePresence>
-  )
+  );
 }
 
-export default App
+function App() {
+  return <AppContent />;
+}
+
+export default App;

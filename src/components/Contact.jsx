@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
 
 const Contact = () => {
   const socialLinks = [
@@ -21,15 +21,15 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 w-full">
+    <section id="contact" className="py-20 bg-primary dark:bg-primary-dark">
       <div className="container mx-auto">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center">
             <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="section-title"
+              className="section-title text-center mb-12"
             >
               Get In Touch
             </motion.h2>
@@ -38,11 +38,47 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-textSecondary max-w-2xl mx-auto mb-8"
+              className="text-lg text-textSecondary dark:text-textSecondary-dark mb-8"
             >
               I'm currently looking for new opportunities! Whether you have a question
               or just want to say hi, I'll try my best to get back to you!
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex justify-center space-x-8 mb-12"
+            >
+              <motion.a
+                href="mailto:your.email@example.com"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-textSecondary dark:text-textSecondary-dark hover:text-secondary dark:hover:text-secondary-dark"
+              >
+                <FiMail className="w-8 h-8" />
+              </motion.a>
+              <motion.a
+                href="https://github.com/ara3isc"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-textSecondary dark:text-textSecondary-dark hover:text-secondary dark:hover:text-secondary-dark"
+              >
+                <FiGithub className="w-8 h-8" />
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-textSecondary dark:text-textSecondary-dark hover:text-secondary dark:hover:text-secondary-dark"
+              >
+                <FiLinkedin className="w-8 h-8" />
+              </motion.a>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

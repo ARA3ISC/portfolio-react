@@ -34,13 +34,13 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="bg-tertiary py-20">
+    <section id="projects" className="py-20 bg-primary dark:bg-primary-dark">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-title text-center mb-20"
+          className="section-title text-center mb-12"
         >
           Some Things I've Built
         </motion.h2>
@@ -49,86 +49,64 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative bg-primary/10 backdrop-blur-sm rounded-xl overflow-hidden"
-              whileHover={{ y: -10 }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative rounded-lg overflow-hidden bg-tertiary/30 dark:bg-tertiary-dark/30 backdrop-blur-sm"
             >
-              {/* Project Image with Overlay */}
-              <div className="relative h-[300px] overflow-hidden">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 z-10"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
+              <div className="relative aspect-video overflow-hidden">
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
                   initial={{ scale: 1 }}
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.4 }}
                 />
-                
-                {/* Hover Content */}
-                <motion.div
-                  className="absolute inset-0 z-20 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ y: 20 }}
-                  whileHover={{ y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-gray-200 text-sm mb-4 line-clamp-3">{project.description}</p>
-                  <div className="flex gap-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-secondary transition-colors"
-                    >
-                      <FiGithub size={24} />
-                    </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-secondary transition-colors"
-                    >
-                      <FiExternalLink size={24} />
-                    </a>
-                  </div>
-                </motion.div>
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-500" />
               </div>
 
-              {/* Tags */}
-              <div className="px-6 py-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <motion.span
-                      key={tagIndex}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 + tagIndex * 0.1 }}
-                      className="px-3 py-1 bg-secondary/20 rounded-full text-xs text-secondary backdrop-blur-sm
-                               hover:bg-secondary hover:text-white transition-all duration-300 cursor-default"
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-textPrimary dark:text-textPrimary-dark mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-textSecondary dark:text-textSecondary-dark mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-sm px-2 py-1 rounded bg-secondary/10 dark:bg-secondary-dark/10 text-secondary dark:text-secondary-dark"
                     >
                       {tag}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
+                <div className="flex gap-4">
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="text-textSecondary dark:text-textSecondary-dark hover:text-secondary dark:hover:text-secondary-dark"
+                  >
+                    <FiGithub className="w-6 h-6" />
+                  </motion.a>
+                  <motion.a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="text-textSecondary dark:text-textSecondary-dark hover:text-secondary dark:hover:text-secondary-dark"
+                  >
+                    <FiExternalLink className="w-6 h-6" />
+                  </motion.a>
+                </div>
               </div>
-
-              {/* Glowing Effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/30 to-secondary/0 opacity-0
-                           group-hover:opacity-20 blur-xl transition-opacity duration-500"
-                initial={{ rotate: 0 }}
-                whileHover={{ rotate: 180 }}
-                transition={{ duration: 1, ease: "linear" }}
-              />
             </motion.div>
           ))}
         </div>

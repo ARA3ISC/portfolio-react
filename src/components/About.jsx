@@ -2,18 +2,20 @@ import { motion, useInView } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 import { useRef } from 'react';
 import avatarImage from '/src/assets/avatar.jpeg';
+import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
+import { SiTailwindcss, SiJavascript, SiTypescript } from 'react-icons/si';
 
 const About = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   const skills = [
-    'JavaScript (ES6+)',
-    'React',
-    'TypeScript',
-    'Tailwind CSS',
-    'Python',
-    'C/C++',
+    { name: 'JavaScript (ES6+)', icon: SiJavascript },
+    { name: 'React', icon: FaReact },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'Tailwind CSS', icon: SiTailwindcss },
+    { name: 'Python', icon: FaPython },
+    { name: 'C/C++', icon: null },
   ];
 
   const containerVariants = {
@@ -39,13 +41,13 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 w-full">
+    <section id="about" className="py-20 w-full bg-primary dark:bg-primary-dark">
       <div className="container mx-auto">
         <div className="max-w-5xl mx-auto px-4" ref={containerRef}>
           <motion.h2
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            className="section-title"
+            className="section-title text-center mb-12"
           >
             About Me
           </motion.h2>
@@ -56,38 +58,43 @@ const About = () => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
-              <motion.p variants={itemVariants} className="text-textSecondary mb-4">
+              <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark mb-4">
                 Hello! My name is [Your Name] and I enjoy creating things that live on the internet.
                 My interest in web development started back in [year] when I decided to try editing
                 custom Tumblr themes — turns out hacking together a custom reblog button taught me
                 a lot about HTML & CSS!
               </motion.p>
-              <motion.p variants={itemVariants} className="text-textSecondary mb-4">
+              <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark mb-4">
                 Fast-forward to today, and I've had the privilege of working at [companies/projects].
                 My main focus these days is building accessible, inclusive products and digital
                 experiences.
               </motion.p>
-              <motion.p variants={itemVariants} className="text-textSecondary">
+              <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark">
                 Here are a few technologies I've been working with recently:
               </motion.p>
-              <motion.ul 
-                className="grid grid-cols-2 gap-2 mt-4"
+              <motion.div 
+                className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-4"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
               >
                 {skills.map((skill) => (
-                  <motion.li
-                    key={skill}
+                  <motion.div
+                    key={skill.name}
                     variants={itemVariants}
-                    className="flex items-center space-x-2 hover-trigger"
-                    whileHover={{ x: 10 }}
+                    className="flex flex-col items-center p-4 rounded-lg bg-tertiary/30 dark:bg-tertiary-dark/30 backdrop-blur-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <span className="text-secondary">▹</span>
-                    <span>{skill}</span>
-                  </motion.li>
+                    {skill.icon && (
+                      <skill.icon className="w-12 h-12 text-secondary dark:text-secondary-dark mb-2" />
+                    )}
+                    <span className="text-textPrimary dark:text-textPrimary-dark text-sm font-medium">
+                      {skill.name}
+                    </span>
+                  </motion.div>
                 ))}
-              </motion.ul>
+              </motion.div>
             </motion.div>
             
             <motion.div
