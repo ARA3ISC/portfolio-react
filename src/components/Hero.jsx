@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useSpring } from '@react-spring/web';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import resume from '/src/assets/aneddame_resume_en.pdf';
+import { FiDownload } from 'react-icons/fi';
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -33,6 +35,13 @@ const Hero = () => {
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     set({ xy: [x * 50, y * 50] });
+  };
+
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    setIsDownloading(true);
+    setTimeout(() => setIsDownloading(false), 2000);
   };
 
   return (
@@ -102,8 +111,6 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
           className="mt-8 flex gap-4 justify-center"
           data-scroll
           data-scroll-speed="5"
@@ -115,15 +122,56 @@ const Hero = () => {
           >
             Check out my work!
           </a>
-          <a
-            href="/resume.pdf"
-            className="btn-secondary hover-trigger"
+
+          <motion.a
+            href={resume}
             download
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={handleDownload}
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg border-2 border-secondary dark:border-secondary-dark px-6 py-3 transition-all duration-300 hover:bg-secondary/10 dark:hover:bg-secondary-dark/10"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Download Resume
-          </a>
+            <span className="relative flex items-center gap-2 text-secondary dark:text-secondary-dark">
+              {isDownloading ? (
+                <motion.div
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                >
+                  <FiDownload className="h-5 w-5" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  animate={{ y: [0, -2, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                >
+                  <FiDownload className="h-5 w-5" />
+                </motion.div>
+              )}
+              <span className="relative">
+                Resume
+                <motion.span
+                  className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-secondary dark:bg-secondary-dark"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: 0.2,
+                  }}
+                />
+              </span>
+            </span>
+            <motion.div
+              className="absolute inset-0 -z-10 bg-gradient-to-r from-secondary/20 dark:from-secondary-dark/20 to-transparent"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.5 }}
+            />
+          </motion.a>
         </motion.div>
       </motion.div>
 
