@@ -11,19 +11,15 @@ const About = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-  const skillsRow1 = [
+  const skills = [
     { name: 'JavaScript (ES6+)', icon: SiJavascript },
     { name: 'React', icon: FaReact },
     { name: 'Django', icon: TbBrandDjango },
-    { name: 'Git', icon: FaGithub },
-  ];
-
-  const skillsRow2 = [
+    { name: 'TypeScript', icon: SiTypescript },
     { name: 'Tailwind CSS', icon: SiTailwindcss },
     { name: 'Python', icon: FaPython },
     { name: 'C/C++', icon: TbBrandCpp },
-    { name: 'TypeScript', icon: SiTypescript },
-
+    { name: 'Git', icon: FaGithub },
   ];
 
   const containerVariants = {
@@ -60,18 +56,41 @@ const About = () => {
             About Me
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
               <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark mb-4">
-                Hi there! I'm Mohamed, a passionate software engineer with a knack for developing robust backend systems and engaging frontend experiences. I specialize in crafting efficient, scalable solutions using modern technologies like React, Django, and Docker. When I'm not coding, I enjoy exploring new tech trends and contributing to open-source projects.
+              Hi there! I’m Mohamed, a passionate software engineer with a knack for developing robust backend systems and engaging frontend experiences. I specialize in crafting efficient, scalable solutions using modern technologies like React, Django, and Docker. When I’m not coding, I enjoy exploring new tech trends and contributing to open-source projects.
               </motion.p>
               <motion.p variants={itemVariants} className="text-textSecondary dark:text-textSecondary-dark">
                 Here are a few technologies I've been working with recently:
               </motion.p>
+              <motion.div
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+              >
+                {skills.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    variants={itemVariants}
+                    className="flex flex-col items-center text-center p-4 rounded-lg bg-tertiary/30 dark:bg-tertiary-dark/30 backdrop-blur-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {skill.icon && (
+                      <skill.icon className="w-12 h-12 text-secondary dark:text-secondary-dark mb-2" />
+                    )}
+                    <span className="text-textPrimary dark:text-textPrimary-dark text-sm font-medium">
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -102,66 +121,6 @@ const About = () => {
               </Tilt>
             </motion.div>
           </div>
-
-          {/* Skills section - Centered with 50% width */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="w-full flex justify-center"
-          >
-            <div className="w-full overflow-hidden">
-              {/* First row of sliding skills */}
-              <div className="mb-4 overflow-hidden">
-                <motion.div
-                  className="flex gap-8 animate-slide"
-                  initial={{ x: 0 }}
-                  animate={{ x: "-100%" }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 15,
-                    ease: "linear",
-                  }}
-                >
-                  {[...skillsRow1, ...skillsRow1, ...skillsRow1, ...skillsRow1].map((skill, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2 bg-tertiary dark:bg-tertiary-dark rounded-lg px-6 py-3 whitespace-nowrap"
-                    >
-                      {skill.icon && (
-                        <skill.icon className="w-12 h-12 text-secondary dark:text-secondary-dark my-2" />
-                      )}
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Second row of sliding skills */}
-              <div className="overflow-hidden">
-                <motion.div
-                  className="flex gap-8 animate-slide-reverse"
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "0%" }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 15,
-                    ease: "linear",
-                  }}
-                >
-                  {[...skillsRow2, ...skillsRow2, ...skillsRow2, ...skillsRow2].map((skill, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2 bg-tertiary dark:bg-tertiary-dark rounded-lg px-6 py-3 whitespace-nowrap"
-                    >
-                      {skill.icon && (
-                        <skill.icon className="w-12 h-12 text-secondary dark:text-secondary-dark my-2" />
-                      )}
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

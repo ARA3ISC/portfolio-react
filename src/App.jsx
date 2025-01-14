@@ -35,7 +35,7 @@ function AppContent() {
   useEffect(() => {
     const glitchInterval = setInterval(() => {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*()[]{}/?';
-      const randomText = Array.from({ length: 7 }, () => 
+      const randomText = Array.from({ length: 7 }, () =>
         chars.charAt(Math.floor(Math.random() * chars.length))
       ).join('');
       setGlitchText(randomText);
@@ -93,7 +93,7 @@ function AppContent() {
         <motion.div
           key="loader"
           className="fixed inset-0 bg-primary dark:bg-primary-dark overflow-hidden perspective-1000 z-50"
-          exit={{ 
+          exit={{
             opacity: 0,
             scale: 1.5,
             filter: 'brightness(2)',
@@ -103,16 +103,16 @@ function AppContent() {
           {/* 3D Rotating Cube */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
-            animate={{ 
+            animate={{
               rotateY: [0, 360],
               rotateX: [0, 360],
             }}
-            transition={{ 
+            transition={{
               duration: 3,
               ease: "linear",
               repeat: Infinity
             }}
-            style={{ 
+            style={{
               transformStyle: "preserve-3d",
               perspective: "1000px"
             }}
@@ -121,12 +121,12 @@ function AppContent() {
               <motion.div
                 key={i}
                 className="absolute w-32 h-32 border-2 border-secondary/30 dark:border-secondary-dark/30 backdrop-blur-sm"
-                style={{ 
+                style={{
                   transform: `rotateY(${i * 60}deg) translateZ(80px)`,
                   backgroundColor: isDarkMode ? 'rgba(var(--secondary-dark-rgb), 0.1)' : 'rgba(var(--secondary-rgb), 0.1)'
                 }}
                 animate={{
-                  borderColor: isDarkMode 
+                  borderColor: isDarkMode
                     ? ['rgba(var(--secondary-dark-rgb), 0.3)', 'rgba(var(--secondary-dark-rgb), 0.8)', 'rgba(var(--secondary-dark-rgb), 0.3)']
                     : ['rgba(var(--secondary-rgb), 0.3)', 'rgba(var(--secondary-rgb), 0.8)', 'rgba(var(--secondary-rgb), 0.3)']
                 }}
@@ -146,7 +146,7 @@ function AppContent() {
                 className="text-6xl font-bold text-secondary dark:text-secondary-dark relative"
                 style={{ textShadow: isDarkMode ? '2px 2px 20px rgba(var(--secondary-dark-rgb), 0.5)' : '2px 2px 20px rgba(var(--secondary-rgb), 0.5)' }}
                 animate={{
-                  textShadow: isDarkMode 
+                  textShadow: isDarkMode
                     ? ['2px 2px 20px rgba(var(--secondary-dark-rgb), 0.5)', '2px 2px 40px rgba(var(--secondary-dark-rgb), 0.8)', '2px 2px 20px rgba(var(--secondary-dark-rgb), 0.5)']
                     : ['2px 2px 20px rgba(var(--secondary-rgb), 0.5)', '2px 2px 40px rgba(var(--secondary-rgb), 0.8)', '2px 2px 20px rgba(var(--secondary-rgb), 0.5)']
                 }}
@@ -220,7 +220,7 @@ function AppContent() {
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div 
+                <motion.div
                   className="text-secondary dark:text-secondary-dark font-mono text-sm flex items-center"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -252,9 +252,9 @@ function AppContent() {
           <CustomCursor />
           <div className="max-w-[1920px] mx-auto relative">
             <Navbar />
-            <main 
+            <main
               className="relative"
-              data-scroll-container 
+              data-scroll-container
               ref={scrollRef}
             >
               <Hero />
