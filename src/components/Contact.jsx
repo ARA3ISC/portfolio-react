@@ -1,20 +1,20 @@
 import { motion } from 'framer-motion';
-import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
+import { FiInstagram, FiGithub, FiLinkedin } from 'react-icons/fi';
 
 const Contact = () => {
   const socialLinks = [
     {
-      href: 'mailto:your.email@example.com',
-      icon: FiMail,
-      label: 'Email'
+      href: 'https://www.instagram.com/arabi.xpm/',
+      icon: FiInstagram,
+      label: 'instagram'
     },
     {
-      href: 'https://github.com/yourusername',
+      href: 'https://github.com/ara3isc',
       icon: FiGithub,
-      label: 'GitHub'
+      label: 'Github'
     },
     {
-      href: 'https://linkedin.com/in/yourusername',
+      href: 'https://linkedin.com/in/mohamed-aneddame',
       icon: FiLinkedin,
       label: 'LinkedIn'
     }

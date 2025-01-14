@@ -9,26 +9,23 @@ const Projects = () => {
   const projects = [
     {
       title: 'Inception',
-      description: 'A web application that helps users track their daily habits and goals. Built with React, Node.js, and MongoDB.',
-      tags: ['React', 'Node.js', 'MongoDB', 'Express'],
-      github: '#',
-      live: '#',
+      description: 'A Dockerized project deploying multiple services like Nginx, WordPress, and MariaDB using Docker Compose.',
+      tags: ['Docker', 'Nginx', 'WordPress', 'MariaDB', 'Docker Compose'],
+      github: 'https://github.com/ara3isc/inception',
       image: inceptionImg
     },
     {
-      title: 'Webserv',
-      description: 'An e-commerce platform with real-time inventory management and secure payment processing.',
-      tags: ['Next.js', 'Stripe', 'Tailwind CSS', 'PostgreSQL'],
-      github: '#',
-      live: '#',
-      image: webservImg,
+        title: 'Webserv',
+        description: 'A custom web server built from scratch, handling HTTP requests and responses, inspired by Nginx. It supports multiple clients and dynamic configurations.',
+        tags: ['C++', 'HTTP', 'Sockets', 'Web Server', 'Nginx'],
+        github: 'https://github.com/ara3isc/webserv',
+        image: webservImg
     },
     {
       title: 'ft_transcendence',
-      description: 'An e-commerce platform with real-time inventory management and secure payment processing.',
-      tags: ['Next.js', 'Stripe', 'Tailwind CSS', 'PostgreSQL'],
+      description: 'A full-stack web application combining gaming and social features, built with modern frameworks. It includes real-time gameplay, user authentication, and chat functionalities.',
+      tags: ['Django', 'Vanilla Js', 'Bootstrap', 'RestApi'],
       github: '#',
-      live: '#',
       image: ft_transcendenceImg,
     },
   ];
@@ -95,7 +92,7 @@ const Projects = () => {
                   >
                     <FiGithub className="w-6 h-6" />
                   </motion.a>
-                  <motion.a
+                  {/* <motion.a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -104,7 +101,7 @@ const Projects = () => {
                     className="text-textSecondary dark:text-textSecondary-dark hover:text-secondary dark:hover:text-secondary-dark"
                   >
                     <FiExternalLink className="w-6 h-6" />
-                  </motion.a>
+                  </motion.a> */}
                 </div>
               </div>
             </motion.div>

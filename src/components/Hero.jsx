@@ -27,7 +27,7 @@ const Hero = () => {
   }, []);
 
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
-  
+
   const handleMouseMove = (e) => {
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -68,7 +68,7 @@ const Hero = () => {
           data-scroll
           data-scroll-speed="2"
         >
-          <span 
+          <span
             className="text-textPrimary dark:text-textPrimary-dark"
             data-scroll
             data-scroll-direction="horizontal"
@@ -104,21 +104,30 @@ const Hero = () => {
           transition={{ delay: 0.6 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mt-8"
+          className="mt-8 flex gap-4 justify-center"
           data-scroll
           data-scroll-speed="5"
         >
-          <a 
-            href="#projects" 
+          <a
+            href="#projects"
             className="btn-primary hover-trigger"
             data-scroll-to
           >
             Check out my work!
           </a>
+          <a
+            href="/resume.pdf"
+            className="btn-secondary hover-trigger"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download Resume
+          </a>
         </motion.div>
       </motion.div>
 
-      <div 
+      <div
         className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent to-primary dark:to-primary-dark opacity-50"
         data-scroll
         data-scroll-speed="-8"

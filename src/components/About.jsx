@@ -2,9 +2,9 @@ import { motion, useInView } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 import { useRef } from 'react';
 import avatarImage from '/src/assets/avatar.jpeg';
-import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
+import { FaReact, FaPython, FaGithub } from 'react-icons/fa';
 import { SiTailwindcss, SiJavascript, SiTypescript } from 'react-icons/si';
-import { TbBrandCpp } from "react-icons/tb";
+import { TbBrandCpp, TbBrandDjango } from "react-icons/tb";
 
 
 const About = () => {
@@ -14,10 +14,12 @@ const About = () => {
   const skills = [
     { name: 'JavaScript (ES6+)', icon: SiJavascript },
     { name: 'React', icon: FaReact },
+    { name: 'Django', icon: TbBrandDjango },
     { name: 'TypeScript', icon: SiTypescript },
     { name: 'Tailwind CSS', icon: SiTailwindcss },
     { name: 'Python', icon: FaPython },
     { name: 'C/C++', icon: TbBrandCpp },
+    { name: 'Git', icon: FaGithub },
   ];
 
   const containerVariants = {
@@ -67,7 +69,7 @@ const About = () => {
                 Here are a few technologies I've been working with recently:
               </motion.p>
               <motion.div 
-                className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-4"
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-4"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
@@ -76,7 +78,7 @@ const About = () => {
                   <motion.div
                     key={skill.name}
                     variants={itemVariants}
-                    className="flex flex-col items-center text-center p-4 rounded-lg bg-tertiary/30 dark:bg-tertiary-dark/30 backdrop-blur-sm"
+                    className="flex flex-col items-center text-center p-4 rounded-lg bg-tertiary/30 dark:bg-tertiary-dark/30 backdrop-blur-lg"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
