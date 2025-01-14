@@ -124,7 +124,8 @@ const Hero = () => {
           </a>
 
           <motion.a
-            href={resume}
+            href='#'
+            // href={resume}
             download
             onClick={handleDownload}
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg border-2 border-secondary dark:border-secondary-dark px-6 py-3 transition-all duration-300 hover:bg-secondary/10 dark:hover:bg-secondary-dark/10"
