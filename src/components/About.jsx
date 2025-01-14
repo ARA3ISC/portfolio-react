@@ -4,6 +4,8 @@ import { useRef } from 'react';
 import avatarImage from '/src/assets/avatar.jpeg';
 import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
 import { SiTailwindcss, SiJavascript, SiTypescript } from 'react-icons/si';
+import { TbBrandCpp } from "react-icons/tb";
+
 
 const About = () => {
   const containerRef = useRef(null);
@@ -15,7 +17,7 @@ const About = () => {
     { name: 'TypeScript', icon: SiTypescript },
     { name: 'Tailwind CSS', icon: SiTailwindcss },
     { name: 'Python', icon: FaPython },
-    { name: 'C/C++', icon: null },
+    { name: 'C/C++', icon: TbBrandCpp },
   ];
 
   const containerVariants = {
@@ -82,7 +84,7 @@ const About = () => {
                   <motion.div
                     key={skill.name}
                     variants={itemVariants}
-                    className="flex flex-col items-center p-4 rounded-lg bg-tertiary/30 dark:bg-tertiary-dark/30 backdrop-blur-sm"
+                    className="flex flex-col items-center text-center p-4 rounded-lg bg-tertiary/30 dark:bg-tertiary-dark/30 backdrop-blur-sm"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >

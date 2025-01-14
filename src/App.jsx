@@ -9,6 +9,7 @@ import About from './components/About'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import CustomCursor from './components/CustomCursor'
+import BackToTop from './components/BackToTop'
 
 const generateParticles = (count) => {
   return Array.from({ length: count }, (_, i) => ({
@@ -33,7 +34,7 @@ function AppContent() {
 
   useEffect(() => {
     const glitchInterval = setInterval(() => {
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*()[]{}/?';
       const randomText = Array.from({ length: 7 }, () => 
         chars.charAt(Math.floor(Math.random() * chars.length))
       ).join('');
@@ -262,6 +263,7 @@ function AppContent() {
               <Contact />
             </main>
           </div>
+          <BackToTop />
         </motion.div>
       )}
     </AnimatePresence>
